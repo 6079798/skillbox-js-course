@@ -13,6 +13,8 @@ class ImagesPage extends Component {
     currentPage: 1
   };
 
+  SCROLL_OFFSET = 80;
+
   componentDidMount() {
     if (!this.props.isLoggingIn) this.props.fetchImages();
     window.addEventListener("scroll", this.handleScroll);
@@ -29,7 +31,7 @@ class ImagesPage extends Component {
     const lastCard = document.querySelector(".image:last-child");
     const lastCardOffset = lastCard.offsetTop + lastCard.clientHeight;
     const pageOffset = window.pageYOffset + window.innerHeight;
-    if (pageOffset > lastCardOffset) {
+    if (pageOffset > lastCardOffset - this.SCROLL_OFFSET) {
       this.setState(
         prevState => ({
           currentPage: prevState.currentPage + 1
@@ -59,7 +61,7 @@ class ImagesPage extends Component {
       <React.Fragment>
         <Masonry className="row">
           {images.map(image => (
-            <div key={image.id} className="col-md-6 col-lg-4 mb-3 image">
+            <div key={image.uid} className="col-md-6 col-lg-4 mb-3 image">
               <div className="card position-relative">
                 <Link
                   to={{

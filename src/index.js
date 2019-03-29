@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import "./index.css";
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+//const store = createStore(reducer, applyMiddleware(thunk));
 const userToken = getTokenFromStorage();
 
 setAuthHeader(userToken);

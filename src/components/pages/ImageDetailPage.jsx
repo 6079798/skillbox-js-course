@@ -21,7 +21,7 @@ class ImageDetailPage extends Component {
         open
         onClose={this.handleCloseModal}
       >
-        <div className="d-flex align-items-center mt-4 mb-2 image-detail">
+        <div className="d-flex flex-wrap align-items-center mt-4 mb-2 image-detail">
           <img
             className="rounded-circle mr-3"
             src={image.user.profile_image.medium}

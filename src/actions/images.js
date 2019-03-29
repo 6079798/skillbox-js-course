@@ -1,5 +1,6 @@
 import { getImagesByPage } from "../services/imageService";
 import { likeImage, unlikeImage } from "../services/likeService";
+import { addShortId, extractDataFromResponse } from "../utils";
 
 export const REQUEST_IMAGES = "REQUEST_IMAGES";
 const requestImages = () => ({
@@ -38,7 +39,8 @@ export const deleteLike = imageId => async dispatch => {
 export const fetchImages = page => async dispatch => {
   dispatch(requestImages());
   try {
-    const { data: images, headers } = await getImagesByPage(page);
+    const { data, headers } = await getImagesByPage(page);
+    const images = addShortId(extractDataFromResponse(data));
     const lastPage = Math.round(headers["x-total"] / 10);
     return dispatch(receiveImages(images, lastPage));
   } catch (error) {}
