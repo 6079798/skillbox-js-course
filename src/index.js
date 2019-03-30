@@ -25,7 +25,7 @@ const userToken = getTokenFromStorage();
 setAuthHeader(userToken);
 if (userToken) store.dispatch(fetchUser());
 
-const { code } = queryString.parse(window.location.search);
+const { code, error } = queryString.parse(window.location.search);
 
 if (code && code.length === 64) {
   window.history.replaceState({}, null, "/");
@@ -36,6 +36,8 @@ if (code && code.length === 64) {
     });
   } catch (error) {}
 }
+
+if (error) window.history.replaceState({}, null, "/");
 
 ReactDOM.render(
   <BrowserRouter>
