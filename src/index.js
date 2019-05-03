@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+//import { composeWithDevTools } from "redux-devtools-extension";
 import queryString from "query-string";
 import * as serviceWorker from "./serviceWorker";
 import App from "./App";
@@ -18,8 +18,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import "./index.css";
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
-//const store = createStore(reducer, applyMiddleware(thunk));
+//const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(reducer, applyMiddleware(thunk));
 const userToken = getTokenFromStorage();
 
 setAuthHeader(userToken);
